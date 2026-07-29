@@ -7,6 +7,7 @@ on:
       - "contrib/dbt_factory/**"
       - "contrib/templates/dbt-factory/**"
       - "scripts/vendor_dbt_factory.sh"
+      - ".github/workflows/dbt-factory-sync.yml"
   merge_group:
     types: [checks_requested]
 

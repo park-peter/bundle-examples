@@ -86,10 +86,8 @@ matches what you tested with.
 $ make test      # == uv run pytest tests   (run `make manifest` first)
 ```
 
-Runs the vendored factory's test suite plus an offline test of the PyDABs integration against the
-generated manifest. One test compares the generated tasks with a saved snapshot
-(`tests/test_data/expected_tasks.json`); after an intentional change to the generated output,
-refresh it with `make test-update-expected-tasks`.
+Runs an offline test of the PyDABs integration against the generated manifest, building the
+notebook tasks and registering the job; no workspace is required.
 
 ## Folding in an existing dbt project
 

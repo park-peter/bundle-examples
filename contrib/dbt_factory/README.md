@@ -77,9 +77,9 @@ dbt_factory/
 ├── resources/__init__.py       # PyDABs glue: manifest -> generated job (the only integration code)
 ├── src/
 │   ├── models/                 # your dbt models (example: orders_raw, orders_daily)
-│   └── databricks_dbt_factory/ # vendored factory library (trimmed; see NOTICE)
+│   └── databricks_dbt_factory/ # vendored factory library (see NOTICE)
 ├── target/manifest.json        # committed dbt manifest, read at deploy time (regenerate with `make manifest`)
-├── tests/                      # tests for the vendored factory + the PyDABs integration
+├── tests/                      # tests for the PyDABs integration
 ├── pyproject.toml              # dependencies (installed into .venv via `uv sync`)
 └── Makefile                    # convenience targets: setup, manifest, validate, deploy, run, test, test-e2e
 ```
@@ -224,11 +224,8 @@ your project's existing directory structure instead of `src/`, edit the `*-paths
 $ make test      # == uv run pytest tests
 ```
 
-This runs the factory's unit tests plus an offline test that exercises the PyDABs integration
-against the committed manifest; no workspace is required. One test compares the generated tasks
-with a saved snapshot (`tests/test_data/expected_tasks.json`), so unintended changes to the
-generated job fail the suite. After an intentional change to the generated output, refresh the
-snapshot with `make test-update-expected-tasks`.
+This runs an offline test that exercises the PyDABs integration against the committed manifest,
+generating the notebook tasks and registering the job; no workspace is required.
 
 There is also a live end-to-end test that generates a project from the template, deploys it to
 your workspace, runs the generated job, verifies the output tables, and tears everything down

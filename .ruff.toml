@@ -6,4 +6,7 @@ exclude = [
     "default_sql/*",
     "mlops_stacks/*",
     "lakeflow_pipelines_python/*",
+    # The dbt-factory template vendors the upstream databricks-dbt-factory core verbatim (at the
+    # library's line-length); the example copy is format-checked via its own pyproject.toml.
+    "contrib/templates/dbt-factory/template/*/src/databricks_dbt_factory/**",
 ]

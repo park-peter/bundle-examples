@@ -2,13 +2,14 @@ This project includes code vendored from the "databricks-dbt-factory" library.
 
     Source:        https://github.com/mwojtyczka/databricks-dbt-factory
     Full history:  https://github.com/mwojtyczka/databricks-dbt-factory/commits/main
-    Vendored from: commit c8755f7d731cb0043bcc3e1e1958ee8080f873d3 (v0.3.1)
-    Location:      src/databricks_dbt_factory/
+    Vendored from: commit 22db67365996ecaf88af4a42369139a2a9704df1 (v0.3.2)
+    Location:      src/databricks_dbt_factory/ and its tests under tests/
 
-The code under src/databricks_dbt_factory/ is vendored from that repository's release, excluding
-the CLI files (main.py, job_spec.py) that this bundle does not use. It is provided under the MIT
-license reproduced below, which this NOTICE preserves for attribution. All other files are
-part of the bundle-examples repository and are covered by that repository's license.
+The code under src/databricks_dbt_factory/, and the tests conftest.py, test_dbt_factory.py,
+test_dbt_task.py, and test_utils.py under tests/, are vendored from that repository's release,
+excluding the CLI files (main.py, job_spec.py) that this bundle does not use. They are provided
+under the MIT license reproduced below, which this NOTICE preserves for attribution. All other
+files are part of the bundle-examples repository and are covered by that repository's license.
 
 --------------------------------------------------------------------------------
 

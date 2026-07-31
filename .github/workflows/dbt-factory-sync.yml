@@ -7,6 +7,7 @@ on:
       - "contrib/dbt_factory/**"
       - "contrib/templates/dbt-factory/**"
       - "scripts/vendor_dbt_factory.sh"
+      - "scripts/vendor_test_dbt_factory.py"
       - ".github/workflows/dbt-factory-sync.yml"
   merge_group:
     types: [checks_requested]
@@ -20,13 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Assert example core matches template core
+      - name: Assert vendored code matches between example and template
         shell: bash
         run: |-
-          template_core="contrib/templates/dbt-factory/template/{{.project_name}}/src/databricks_dbt_factory"
-          example_core="contrib/dbt_factory/src/databricks_dbt_factory"
-          if ! diff -r --exclude=__pycache__ "$template_core" "$example_core"; then
-            echo "::error::The dbt-factory example and template vendored cores differ." \
+          template="contrib/templates/dbt-factory/template/{{.project_name}}"
+          example="contrib/dbt_factory"
+          ok=0
+          if ! diff -r --exclude=__pycache__ "$template/src/databricks_dbt_factory" "$example/src/databricks_dbt_factory"; then
+            ok=1
+          fi
+          for f in conftest.py test_dbt_factory.py test_dbt_task.py test_utils.py test_vendored_core.py; do
+            if ! diff "$template/tests/$f" "$example/tests/$f"; then
+              ok=1
+            fi
+          done
+          if [ "$ok" -ne 0 ]; then
+            echo "::error::The dbt-factory example and template vendored code differ." \
                  "Re-run scripts/vendor_dbt_factory.sh to sync them from the pinned upstream tag." >&2
             exit 1
           fi

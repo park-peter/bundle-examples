@@ -79,7 +79,7 @@ dbt_factory/
 │   ├── models/                 # your dbt models (example: orders_raw, orders_daily)
 │   └── databricks_dbt_factory/ # vendored factory library (see NOTICE)
 ├── target/manifest.json        # committed dbt manifest, read at deploy time (regenerate with `make manifest`)
-├── tests/                      # tests for the PyDABs integration
+├── tests/                      # vendored factory tests + the PyDABs integration test
 ├── pyproject.toml              # dependencies (installed into .venv via `uv sync`)
 └── Makefile                    # convenience targets: setup, manifest, validate, deploy, run, test, test-e2e
 ```
@@ -224,8 +224,9 @@ your project's existing directory structure instead of `src/`, edit the `*-paths
 $ make test      # == uv run pytest tests
 ```
 
-This runs an offline test that exercises the PyDABs integration against the committed manifest,
-generating the notebook tasks and registering the job; no workspace is required.
+This runs the vendored factory's own tests (task generation, dependency gating, task keys) plus an
+offline test that exercises the PyDABs integration against the committed manifest, generating the
+notebook tasks and registering the job; no workspace is required.
 
 There is also a live end-to-end test that generates a project from the template, deploys it to
 your workspace, runs the generated job, verifies the output tables, and tears everything down

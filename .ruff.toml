@@ -6,6 +6,10 @@ exclude = [
     "default_sql/*",
     "mlops_stacks/*",
     "lakeflow_pipelines_python/*",
-    # Vendored library, formatted at its own source.
+    # Vendored library and its tests, formatted at their own source.
     "contrib/templates/dbt-factory/template/*/src/databricks_dbt_factory/**",
+    "contrib/templates/dbt-factory/template/*/tests/conftest.py",
+    "contrib/templates/dbt-factory/template/*/tests/test_dbt_factory.py",
+    "contrib/templates/dbt-factory/template/*/tests/test_dbt_task.py",
+    "contrib/templates/dbt-factory/template/*/tests/test_utils.py",
 ]

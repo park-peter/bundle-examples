@@ -35,6 +35,9 @@ jobs:
               ok=1
             fi
           done
+          if ! diff "$template/NOTICE" "$example/NOTICE"; then
+            ok=1
+          fi
           if [ "$ok" -ne 0 ]; then
             echo "::error::The dbt-factory example and template vendored code differ." \
                  "Re-run scripts/vendor_dbt_factory.sh to sync them from the pinned upstream tag." >&2

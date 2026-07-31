@@ -28,6 +28,11 @@ GOLDEN_SPEC_BLOCK = re.compile(
 
 def adapt(src: str) -> str:
     for line in UNUSED_IMPORT_LINES:
+        if src.count(line) != 1:
+            raise SystemExit(
+                f"expected exactly one occurrence of {line!r} to strip, found {src.count(line)}. "
+                "Upstream tests/test_dbt_factory.py imports changed; update this script."
+            )
         src = src.replace(line, "", 1)
     src, count = GOLDEN_SPEC_BLOCK.subn("\n", src)
     if count != 1:

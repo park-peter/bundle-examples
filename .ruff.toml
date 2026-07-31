@@ -6,10 +6,14 @@ exclude = [
     "default_sql/*",
     "mlops_stacks/*",
     "lakeflow_pipelines_python/*",
-    # Vendored library and its tests, formatted at their own source.
+    # Vendored library and its tests, formatted at their own source. Kept byte-identical to the
+    # example copies (dbt-factory-sync.yml), which resolve to line-length 120 via the example's
+    # pyproject.toml; the template has no real pyproject, so exclude these to avoid the default 88.
     "contrib/templates/dbt-factory/template/*/src/databricks_dbt_factory/**",
     "contrib/templates/dbt-factory/template/*/tests/conftest.py",
     "contrib/templates/dbt-factory/template/*/tests/test_dbt_factory.py",
     "contrib/templates/dbt-factory/template/*/tests/test_dbt_task.py",
     "contrib/templates/dbt-factory/template/*/tests/test_utils.py",
+    "contrib/templates/dbt-factory/template/*/tests/test_vendored_core.py",
+    "contrib/templates/dbt-factory/template/*/tests/test_load_resources.py",
 ]

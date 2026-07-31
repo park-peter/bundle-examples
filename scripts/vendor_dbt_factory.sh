@@ -98,5 +98,7 @@ Vendored databricks_dbt_factory core and tests:
 Next:
   1. Update the NOTICE 'Vendored from' line to $TAG ($RESOLVED_SHA) in both
      contrib/templates/dbt-factory/template/{{.project_name}}/NOTICE and contrib/dbt_factory/NOTICE.
-  2. Run the example test suite: (cd contrib/dbt_factory && uv run pytest tests)
+  2. Update the version pin in tests/test_vendored_core.py to match $TAG, in both the template and
+     the example (kept identical by dbt-factory-sync.yml).
+  3. Run the example test suite: (cd contrib/dbt_factory && uv run pytest tests)
 EOF

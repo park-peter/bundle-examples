@@ -30,7 +30,7 @@ jobs:
           if ! diff -r --exclude=__pycache__ "$template/src/databricks_dbt_factory" "$example/src/databricks_dbt_factory"; then
             ok=1
           fi
-          for f in conftest.py test_dbt_factory.py test_dbt_task.py test_utils.py test_vendored_core.py; do
+          for f in conftest.py test_dbt_factory.py test_dbt_task.py test_utils.py test_vendored_core.py test_load_resources.py; do
             if ! diff "$template/tests/$f" "$example/tests/$f"; then
               ok=1
             fi
